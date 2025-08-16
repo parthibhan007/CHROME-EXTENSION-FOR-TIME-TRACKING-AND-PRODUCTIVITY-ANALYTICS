@@ -139,3 +139,7 @@ Integration with Task Managers (e.g., Trello, Asana, Notion) to align browsing w
 9. Conclusion
 
 The Chrome Extension for Time Tracking and Productivity Analytics is a robust solution for enhancing self-discipline and efficiency in a digital-first world. By combining time tracking, categorization, and analytics, it empowers users to take control of their browsing habits. The project showcases skills in Chrome API usage, JavaScript event handling, local storage, and data visualization, making it an excellent portfolio piece for developers.
+
+OUTPUT : -
+
+<img width="1918" height="1026" alt="Image" src="https://github.com/user-attachments/assets/d5bf61f0-d3c6-408f-9b39-0fc44d6496d8" />
