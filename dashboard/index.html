@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <title>Dashboard — Time Tracker (Local)</title>
+  <style>
+    body{font-family:Arial;padding:16px;max-width:900px;margin:auto;}
+    h1{font-size:20px}
+    #summary{margin-top:12px}
+    table{width:100%;border-collapse:collapse}
+    th,td{border:1px solid #eee;padding:6px;text-align:left}
+  </style>
+</head>
+<body>
+  <h1>Local Dashboard</h1>
+  <p>This dashboard reads stored data from the extension (chrome.storage) and displays simple charts and tables.</p>
+  <div id="summary">
+    <table id="table"><thead><tr><th>Site</th><th>Category</th><th>Time (s)</th></tr></thead><tbody></tbody></table>
+  </div>
+
+  <script>
+    // Only works when opened via extension (chrome-extension://) due to permissions.
+    async function loadData() {
+      if (!chrome || !chrome.storage) {
+        document.querySelector('#summary').innerText = 'This dashboard must be opened via the extension (it uses chrome.storage API).';
+        return;
+      }
+      chrome.storage.local.get(null, (data) => {
+        const tbody = document.querySelector('#table tbody');
+        tbody.innerHTML = '';
+        for (const [site, info] of Object.entries(data)) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = '<td>'+site+'</td><td>'+(info.category||'')+'</td><td>'+(Math.round(info.time||0))+'</td>';
+          tbody.appendChild(tr);
+        }
+      });
+    }
+    loadData();
+  </script>
+</body>
+</html>
